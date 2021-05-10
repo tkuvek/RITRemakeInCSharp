@@ -1,0 +1,25 @@
+﻿@model DegreesViewModel
+@{
+    ViewData["Title"] = "Faculty Page";
+}
+<div class="container">
+    <div class="col-md-12">
+        <div class="row">
+
+            @foreach (var faculty in Model.faculty)
+            {
+                <div class="col-md-3">
+                    <div class="card">
+                        <img class="card-img-top" src=@faculty.imagePath alt="facultyImg" width="225" height="250" />
+
+                        <div class="card-body">
+                            <h2>@faculty.name</h2>
+                            <p>@faculty.title</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

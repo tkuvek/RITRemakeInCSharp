@@ -1,0 +1,81 @@
+﻿@model DegreesViewModel
+
+@{
+    ViewData["Title"] = "Degrees page";
+}
+
+<div id="accordionDegrees">
+    <h3>Undergraduate degrees</h3>
+    <div id="accordD1">
+        <div class="col-md-12">
+            <div class="row">
+                @foreach (var undergraduate in Model.undergraduate)
+                {
+                <div class="col-md-4">
+
+                    <h2>@undergraduate.title</h2>
+                    <p>@undergraduate.description</p>
+
+
+                    @foreach (var conc in undergraduate.concentrations)
+                            {
+                    <p>
+                        - @conc
+                    </p>
+                            }
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <h3>Graduate degrees</h3>
+    <div id="accordD2">
+        <div class="col-md-12">
+            <div class="row">
+                @foreach (var graduate in Model.graduate)
+                {
+                @if (graduate.degreeName == "graduate advanced certificates")
+                {
+                <div class="col-md-12 text-center">
+                    <h2>
+                        @graduate.degreeName.Substring(0, 1).ToUpper()@graduate.degreeName.Substring(1)
+                    </h2>
+                    <p>@graduate.description</p>
+                    <ul class="list-group list-group-flush">
+
+                        @foreach (var cert in graduate.availableCertificates)
+                        {
+                        <li class="list-group-item">
+                            <p>@cert</p>
+                        </li>
+                        }
+                    </ul>
+                </div>
+                }
+                @if (graduate.degreeName != "graduate advanced certificates")
+                    {
+                <div class="col-md-4">
+                    <h2>@graduate.title, @graduate.degreeName.ToUpper()</h2>
+                    <p>@graduate.description</p>
+                    @foreach (var conc in graduate.concentrations)
+                        {
+                    <p>@conc</p>
+                        }
+                </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#accordionDegrees").accordion({
+            collapsible: true,
+            autoHeight: true,
+            heightStyle: "content"
+        });
+    });
+</script>

@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model About
+@{var about = Model;}
+
+<section id="hero">
+    <div class="hero-container">
+        <h1 class="text-center">Rochester Institute of Technology</h1>
+        <h2 class="text-center">INFORMATION SCIENCES & TECHNOLOGIES AT RIT</h2>
+        <p class="text-center pt-5 mt-5">
+            <a class="btn-warning rounded-pill text-center px-3 py-3" asp-area="" asp-controller="Home" asp-action="Degrees">Learn more</a>
+        </p>
+        <video playsinline autoplay muted loop id="bgvideo" width="200" height="200">
+            <source src="~/media/video/RIT_Main_Video.mp4" type="video/mp4">
+        </video>
+    </div>
+</section>
+
+<div class="jumbotron">
+    <h1 class="display-5 text-warning pb-3">@about.title</h1>
+    <p class="lead">@about.description</p>
+    <hr class="my-4">
+    <p class="blockquote">@about.quote</p>
+    <p class="blockquote-footer">
+        @about.quoteAuthor
+    </p>
+</div>

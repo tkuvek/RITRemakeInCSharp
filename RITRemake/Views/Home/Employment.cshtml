@@ -1,0 +1,108 @@
+﻿@model EmploymentViewModel
+@{
+    ViewData["Title"] = "Employment Page";
+}
+@{var title = Model.introduction;}
+@{var title2 = Model.degreeStatistics;}
+
+<div class="col-md-12">
+    <h1 class="text-center text-warning py-4">@title.title</h1>
+
+    <div class="row px-4 py-4">
+
+        @foreach (var con in Model.introduction.content)
+        {
+            <div class="col-md-6">
+                <h2>@con.title</h2>
+                <p>@con.description</p>
+            </div>
+        }
+    </div>
+</div>
+<div class="col-md-12">
+    <h1 class="text-center text-warning py-4">@title2.title</h1>
+
+    <div class="row px-4 py-4">
+
+        @foreach (var stat in Model.degreeStatistics.statistics)
+        {
+            <div class="col-md-3">
+                <h2>@stat.value</h2>
+                <p>@stat.description</p>
+
+            </div>
+        }
+    </div>
+</div>
+
+<div id="accordion">
+    <h3>Coop table</h3>
+    <div id="accord1">
+        <table id="coop-table" class="none">
+            <thead>
+                <tr>
+                    <th>Employer</th>
+                    <th>Degree</th>
+                    <th>City</th>
+                    <th>Term</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var table in Model.coopTable.coopInformation)
+                {
+                    <tr>
+                        <td>@table.employer</td>
+                        <td>@table.degree</td>
+                        <td>@table.city</td>
+                        <td>@table.term</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <h3>Employment table</h3>
+    <div id="accord2">
+        <table id="employment-table" class="none">
+            <thead>
+                <tr>
+                    <th>Employer</th>
+                    <th>Degree</th>
+                    <th>City</th>
+                    <th>Title</th>
+                    <th>Start date</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var table in Model.employmentTable.professionalEmploymentInformation)
+                {
+                    <tr>
+                        <td>@table.employer</td>
+                        <td>@table.degree</td>
+                        <td>@table.city</td>
+                        <td>@table.title</td>
+                        <td>@table.startDate</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#accordion").accordion({
+            collapsible: true,
+            autoHeight: true,
+            heightStyle: "content"
+        });
+    });
+    $(window).on('load', function () {
+        ;
+        $('#coop-table').DataTable();
+        $('#coop-table').removeClass('none');
+        $('#employment-table').DataTable();
+        $('#employment-table').removeClass('none');
+    });
+</script>
